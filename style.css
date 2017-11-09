@@ -1,0 +1,38 @@
+/*
+Theme Name: WSR Bootstrap Theme
+Theme URI: 
+Author: WSR
+Author URI: 
+Description: Minimal starter theme
+Version: 1.0.0
+Text Domain: wsr
+*/
+
+/* //// Font Face /////////////////////////////////////////////////*/
+
+@font-face {
+    font-family: 'MyWebFont';
+    src: url('fonts/webfont.eot'); /* IE9 Compat Modes */
+    src: url('fonts/webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('fonts/webfont.woff2') format('woff2'), /* Super Modern Browsers */
+        url('fonts/webfont.woff') format('woff'), /* Pretty Modern Browsers */
+        url('fonts/webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('fonts/webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* //// Custom Styles /////////////////////////////////////////////////*/
+
+
+.navbar-default .navbar-brand h1{
+	font-size: 16px;
+	margin: 0;
+}
+
+
+/* //// Media Queries /////////////////////////////////////////////////*/
+@media (max-width: 767px)  {}
+@media (min-width: 768px)  {}
+@media (min-width: 992px)  {}
+@media (min-width: 1200px) {}
