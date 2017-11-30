@@ -17,6 +17,7 @@
  * Check if User has an active Membership 
  * Hide shipping rates when free shipping is available
  * Product search 
+ * Account tabs
  */
 
 
@@ -321,4 +322,11 @@ function my_hide_shipping_when_free_is_available( $rates ) {
     <input type="hidden" name="post_type" value="product" />
 </form>
 */
+
+
+/***********************************************************
+ * Account tabs
+ * https://github.com/woocommerce/woocommerce/wiki/Customising-account-page-tabs
+ */
+
 
