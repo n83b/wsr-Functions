@@ -731,10 +731,20 @@ function get_the_content_by_id($post_id) {
  */
 //add_filter('manage_{$post_type}_posts_columns' , 'add_wsr_resources_columns');
 function add_wsr_resources_columns($columns) {
+	//add to column
     unset($columns['author']);
     return array_merge($columns, 
-              array('publisher' => __('Publisher'),
-                    'book_author' =>__( 'Book Author')));
+              array('myfield' => __('My Field')
+          ));
+    
+    //replace all columns
+    return array(
+        'cb' => '<input type="checkbox" />',
+        'title' => __('Title'),
+        'myfield' => __('My Field'),
+        'date' => __('Date')
+    );
+
 }
 
 
@@ -742,14 +752,11 @@ function add_wsr_resources_columns($columns) {
 /******************************************************************
  * Custom Post Admin list column content
  */
-//add_action( 'manage_posts_custom_column' , 'custom_columns', 10, 2 );
+//add_action( 'manage_{$post_type}_posts_custom_column' , 'custom_columns', 10, 2 );
 function custom_columns( $column, $post_id ) {
 	switch ( $column ) {
-		case 'my_field':
-			echo get_field('my_field', $post_id);
-		} else {
-			echo 'no field';
-		}
+		case 'myfield':
+			echo 'xxx';
 		break;
 	}
 }
