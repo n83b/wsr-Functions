@@ -731,11 +731,10 @@ function get_the_content_by_id($post_id) {
  */
 //add_filter('manage_{$post_type}_posts_columns' , 'add_wsr_resources_columns');
 function add_wsr_resources_columns($columns) {
-    $columns = array(
-		'my_field' => 'My Field'
-	);
-
-	return $columns;
+    unset($columns['author']);
+    return array_merge($columns, 
+              array('publisher' => __('Publisher'),
+                    'book_author' =>__( 'Book Author')));
 }
 
 
