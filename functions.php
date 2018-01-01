@@ -49,6 +49,7 @@
  * Pre get posts example
  * Get all values for a meta field
  * Translate text in _()
+ * Form Postback example
  */
 
 
@@ -1040,6 +1041,22 @@ function wsr_change_translate_text( $translated_text ) {
 	}
 	return $translated_text;
 }
+
+
+/******************************************************************
+ * Form Postback example
+ *
+on the front end form:
+<form method="post" action="<?php echo esc_url( admin_url('admin-post.php') ) ?>" >
+	<input type="hidden" name="action" value="register">
+	<input type="submit" >
+</form>
+
+in functions:
+add_action( 'admin_post_nopriv_register', 'wsr_register_function' );
+
+
+
 
 
 
