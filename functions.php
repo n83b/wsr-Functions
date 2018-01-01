@@ -1045,15 +1045,20 @@ function wsr_change_translate_text( $translated_text ) {
 
 /******************************************************************
  * Form Postback example
- *
-on the front end form:
-<form method="post" action="<?php echo esc_url( admin_url('admin-post.php') ) ?>" >
-	<input type="hidden" name="action" value="register">
-	<input type="submit" >
-</form>
-
-in functions:
+ * Use admin-post.php as the postback url, and use a hidden action variable
+ * After processing form, use re-direct
+ * on the front end form:
+ * <form method="post" action="<?php echo esc_url( admin_url('admin-post.php') ) ?>" >
+ *	 <input type="hidden" name="action" value="register">
+ *	 <input type="submit" >
+ * </form>
+ */
 add_action( 'admin_post_nopriv_register', 'wsr_register_function' );
+function wsr_register_function{
+	//redirect after processing
+	$error = 'error message';
+	wp_safe_redirect( site_url('/register' . '?regerr=' . rawurlencode($error)));
+} 
 
 
 
