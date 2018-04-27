@@ -142,12 +142,18 @@ jQuery(function(){
 	// 				};
 	// 				jQuery.post(wsr_ajax.ajaxurl, data, function(res) {
 	// 					if( res.success) {
-	// 						masonryContainer.append(res.data).masonry( 'appended', res.data);
-	// 						masonryContainer.masonry( 'reloadItems' );
-	// 						masonryContainer.masonry( 'layout' );
-	// 						jQuery('.products').append( button );
-	// 						page = page + 1;
-	// 						loading = false;
+	// 						var $items = jQuery(res.data);
+	// 						
+	// 						$items.imagesLoaded().done(function(instance){
+	//							masonryContainer.append($items);
+	//							masonryContainer.masonry( 'appended', $items);
+	//							masonryContainer.masonry('reloadItems');
+	//							masonryContainer.masonry('layout');
+	// 						
+	// 							jQuery('.products').append( button );
+	// 							page = page + 1;
+	// 							loading = false;
+	// 						});
 	// 					} else {
 	// 						console.log(res);
 	// 					}
