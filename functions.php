@@ -33,6 +33,9 @@
  * Custom Post Admin list columns Header
  * Custom Post Admin list column content
  * Custom Post Admin list sort column
+ * User list column header
+ * User list column content
+ * User list sort column
  * Remove Menu Items
  * Remove Sub Menu Items
  * Hide acf menu item
@@ -773,6 +776,7 @@ function wsr_resources_sortable_columns( $columns ) {
 	return $columns;
 }
 
+
 /* Only run our customization on the 'edit.php' page in the admin. */
 //add_action( 'load-edit.php', 'edit_wsr_resources_load' );
 function edit_wsr_resources_load() {
@@ -796,6 +800,44 @@ function sort_wsr_resources( $vars ) {
 		}
 	}
 	return $vars;
+}
+
+
+
+/******************************************************************
+* User list column header
+*/
+//add_filter('manage_users_columns', 'wsr_add_user_id_column');
+function wsr_add_user_id_column($columns) {
+	//adds this custom colum at 3rd postition
+    $newColumns = array_slice($columns, 0, 3, true) +
+    array("column_id" => "Name to Display") +
+    array_slice($columns, 3, count($columns) - 1, true) ;
+
+    return $newColumns;
+}
+
+
+
+/******************************************************************
+ * User list column content
+ */
+add_action('manage_users_custom_column',  'wsr_show_user_id_column_content', 10, 3);
+function wsr_show_user_id_column_content($value, $column_name, $user_id) {
+    $custom_field = get_field('custom_field', 'user_' . $user_id );
+    if ( 'column_id' == $column_name )
+        return $custom_field;
+    return $value;
+}
+
+
+
+/******************************************************************
+ * User list sort column
+ */
+//add_filter( 'manage_users_sortable_columns', 'wsr_make_registered_column_sortable' );
+function wsr_make_registered_column_sortable( $columns ) {
+    return wp_parse_args( array( 'column_id' => 'custom_field' ), $columns );
 }
 
 
