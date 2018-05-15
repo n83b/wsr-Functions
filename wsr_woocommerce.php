@@ -264,10 +264,15 @@ function reduce_woocommerce_min_strength_requirement( $strength ) {
 add_filter( 'woocommerce_get_price_html','custom_free_price_text' );
 function custom_free_price_text( $pPrice ) {
     global $product;
-    $price = $product->get_price();
+
+    //if not product then bail
+    if (!$product instanceof WC_Product_Simple)
+        return $pPrice;
+
+    $price = $product->get_regular_price();
 
     if($price == '0.00') {
-		return '<div class="divCallForPrice">Call for price & availability.<br><a href="tel:+0400000000">(08) 8333 1234</a></div>';
+		return '<div class="divCallForPrice">Call for price & availability.<br><a href="tel:0881839000">(08) 8183 9000</a></div>';
     } else {
         return $pPrice;
     }
