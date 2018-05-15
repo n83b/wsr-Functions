@@ -277,14 +277,22 @@ function custom_free_price_text( $pPrice ) {
 /***********************************************************
 //remove add to cart
 */
-remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 30);
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
-add_filter('woocommerce_loop_add_to_cart_link', 'wsr_loop_add_to_cart_link', 30);
+add_filter( 'woocommerce_is_purchasable', 'remove_add_to_cart_on_0', 10, 2 );
+add_filter( 'woocommerce_variation_is_purchasable', 'purchasable_variation_date_range', 20, 2 );
+function remove_add_to_cart_on_0 ( $purchasable, $product ){
+    if( $product->get_price() == '0.00' ){
+        $purchasable = false;
+        remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 30);
+		remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+		add_filter('woocommerce_loop_add_to_cart_link', 'wsr_loop_add_to_cart_link', 30);
+    }
+    return $purchasable;
+}
+
 function wsr_loop_add_to_cart_link($quantity){
 	global $product;
 	return '<a rel="nofollow" href="' . get_permalink( $product->get_id()) . '" data-product_id="' . $product->get_id() . '" class="button product_type_simple">Read more</a>';
 }
-
 
 
 /***********************************************************
