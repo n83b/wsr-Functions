@@ -266,6 +266,10 @@ function custom_free_price_text( $pPrice ) {
     global $product;
     $price = "0";
 
+    //this is used to stop a bug with theme on Hificollector
+    if (!$product instanceof WC_Product_Simple)
+        return $pPrice;
+
     $price = $product->get_price();
 
     if($price == "0.00" || $price == "0" || $price == 0 ) {
