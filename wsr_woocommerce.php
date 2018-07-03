@@ -264,15 +264,12 @@ function reduce_woocommerce_min_strength_requirement( $strength ) {
 add_filter( 'woocommerce_get_price_html','custom_free_price_text' );
 function custom_free_price_text( $pPrice ) {
     global $product;
+    $price = "0";
 
-    //if not product then bail
-    if (!$product instanceof WC_Product_Simple)
-        return $pPrice;
+    $price = $product->get_price();
 
-    $price = $product->get_regular_price();
-
-    if($price == '0.00') {
-		return '<div class="divCallForPrice">Call for price & availability.<br><a href="tel:0881839000">(08) 8183 9000</a></div>';
+    if($price == "0.00" || $price == "0" || $price == 0 ) {
+		return '<div class="divCallForPrice">Call for price & availability.<br><a href="tel:0871300148">(08) 7130 0148</a></div>';
     } else {
         return $pPrice;
     }
@@ -285,7 +282,8 @@ function custom_free_price_text( $pPrice ) {
 add_filter( 'woocommerce_is_purchasable', 'remove_add_to_cart_on_0', 10, 2 );
 add_filter( 'woocommerce_variation_is_purchasable', 'purchasable_variation_date_range', 20, 2 );
 function remove_add_to_cart_on_0 ( $purchasable, $product ){
-    if( $product->get_price() == '0.00' ){
+    $price = $product->get_price();
+    if($price == "0.00" || $price == "0" || $price == 0 ) {
         $purchasable = false;
         remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 30);
 		remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
@@ -298,6 +296,7 @@ function wsr_loop_add_to_cart_link($quantity){
 	global $product;
 	return '<a rel="nofollow" href="' . get_permalink( $product->get_id()) . '" data-product_id="' . $product->get_id() . '" class="button product_type_simple">Read more</a>';
 }
+
 
 
 /***********************************************************
