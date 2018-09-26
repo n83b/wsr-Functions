@@ -310,3 +310,12 @@ jQuery(function(){
 // 	  window.scrollTo(0, currentScrollPosition - wheelDelta);
 // 	});
 // }
+
+/****************
+* Ability to click parent menu item on mobile. 
+* Need to change $atts['href'] = '#' in navwalker to have href
+*/
+// jQuery('.dropdown a.dropdown-toggle').on('click', function() {
+// 	    if(jQuery(this).parent().hasClass('open'))
+// 	        location.assign(jQuery(this).attr('href'));
+// 	});
