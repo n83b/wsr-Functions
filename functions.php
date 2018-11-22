@@ -232,7 +232,7 @@ function wsr_custom_post(){
 		'rewrite'	=> array('slug' => 'wsr-portfolio'),
 		'capability_type' => 'portfolio',
 		'capabilities'=>$capabilities,
-		'supports'	=> array('title','comments','revisions','thumbnail','author','page-attributes'),
+		'supports'	=> array('title','editor','comments','revisions','thumbnail','author','page-attributes'),
 	));
 
 	flush_rewrite_rules(false);
