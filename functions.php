@@ -15,6 +15,7 @@
  * Reorder and rename Contact Form 7 Admin menu
  * Excerpt with custom word count
  * Form ajax callback function
+ * Cross domain for ajax. CORS
  * Lazy Load - Infinite Scroll
  * Shows a google map
  * Admin login image & css
@@ -441,6 +442,19 @@ function wsr_ajax_callback(){
 	$result = 'Returned data is ' . $postdata;
 	wp_send_json_success($result);
 	wp_die();
+}
+
+
+
+/******************************************************************
+ * Cross domain for ajax. CORS
+ * Allows ajax to connect from a differnt domain
+ */
+add_filter( 'allowed_http_origins', 'add_allowed_origins' );
+function add_allowed_origins( $origins ) {
+    $origins[] = 'https://site1.example.com';
+    $origins[] = 'https://site2.example.com';
+    return $origins;
 }
 
 
@@ -1102,17 +1116,6 @@ function wsr_register_function{
 	wp_safe_redirect( site_url('/register' . '?regerr=' . rawurlencode($error)));
 } 
 
-
-/******************************************************************
- * Cross domain for ajax. CORS
- * Allows ajax to connect from a differnt domain
- */
-add_filter( 'allowed_http_origins', 'add_allowed_origins' );
-function add_allowed_origins( $origins ) {
-    $origins[] = 'https://site1.example.com';
-    $origins[] = 'https://site2.example.com';
-    return $origins;
-}
 
 
 
