@@ -1103,6 +1103,16 @@ function wsr_register_function{
 } 
 
 
+/******************************************************************
+ * Cross domain for ajax. CORS
+ * Allows ajax to connect from a differnt domain
+ */
+add_filter( 'allowed_http_origins', 'add_allowed_origins' );
+function add_allowed_origins( $origins ) {
+    $origins[] = 'https://site1.example.com';
+    $origins[] = 'https://site2.example.com';
+    return $origins;
+}
 
 
 
