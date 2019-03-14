@@ -294,6 +294,7 @@ function wsr_custom_taxonomy(){
 		$taxonomy_args = array(
 	    	'show_ui' 		=> true,
 	    	'show_in_rest' => true,
+	    	'rest_base'    => 'portfolio',
 	    	'show_admin_column' => true,
 	      	'hierarchical' 	=> true,
 	       	'label' 		=> 'Size',
