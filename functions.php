@@ -1111,7 +1111,11 @@ function wsr_change_translate_text( $translated_text ) {
  *	 <input type="submit" >
  * </form>
  */
+//guest user
 add_action( 'admin_post_nopriv_register', 'wsr_register_function' );
+//registered user
+add_action( 'admin_post_register', 'wsr_register_function' );
+
 function wsr_register_function{
 	//redirect after processing
 	$error = 'error message';
