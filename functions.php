@@ -54,6 +54,7 @@
  * Get all values for a meta field
  * Translate text in _()
  * Form Postback example
+ * rewrite route to custom template
  */
 
 
@@ -1122,6 +1123,38 @@ function wsr_register_function{
 	wp_safe_redirect( site_url('/register' . '?regerr=' . rawurlencode($error)));
 } 
 
+
+
+
+/******************************************************************
+ * Rewrite route to custom template. Replace 'xxx' with rout slug
+ */
+add_action( 'init', 'add_xxx_rewrite_rule' );
+add_filter( 'query_vars', 'set_xxx_query_vars' );
+add_filter( 'template_include', 'load_xxx_template' );
+	
+function add_xxx_rewrite_rule() {
+	add_rewrite_rule(
+		'xxx/?$',
+		'index.php?xxx=true',
+		'top'
+	);
+}
+	
+function set_xxx_query_vars( $vars ){
+	$vars[] = 'xxx';
+	return $vars;
+}
+	
+function load_xxx_template( $template ) {
+	global $wp_query;
+	$page_value = $wp_query->query_vars['xxx'];
+	if ( $page_value && $page_value == "true") {
+		return get_stylesheet_directory() . '/xxx-template.php' ;
+	}
+		
+	return $template;
+}
 
 
 
